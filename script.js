@@ -13,5 +13,33 @@ transactionFormEl.addEventListener("submit", addTransaction)
 function addTransaction (e) {
     e.preventDefault();
 
-    
+    //get form values
+    const description = descriptionEl.value.trim( );
+    const amount = parseFloat(amountEl.value);
+
+    console.log(typeof amount);
+
+    transactions.push({
+        id:  Date.now,
+        descriptions:description,
+        amount: amount
+    })
+
+    localStorage.setItem("transactions", JSON.stringify(transactions))
+
+    updateTransactionList()
+    updateSummary()
+
+    transactionFormEl.reset()
 }
+
+function updateTransactionList() {
+    transactionListEl.innerHTML = ""
+
+    const sortedTransactions = [...transactions].reverse()
+
+    sortedTransactions.forEach((transactions) => {
+        createTransactionElement(transaction)
+    })
+}
+
