@@ -20,7 +20,7 @@ function addTransaction (e) {
     console.log(typeof amount);
 
     transactions.push({
-        id:  Date.now,
+        id:  Date.now(),
         descriptions:description,
         amount: amount
     })
@@ -38,8 +38,12 @@ function updateTransactionList() {
 
     const sortedTransactions = [...transactions].reverse()
 
-    sortedTransactions.forEach((transactions) => {
-        createTransactionElement(transaction)
+    sortedTransactions.forEach((transaction) => {
+       const transactionEl = createTransactionElement(transaction)
+       transactionListEl.appendChild(transactionEl)
     })
+    
 }
+
+function createTransactionElement(transaction) 
 
